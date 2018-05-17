@@ -399,7 +399,7 @@ function Get-TargetResource
                         TotalUpdatesNotInstalled = $totalUpdatesNotInstalled 
                         RebootRequired = $rebootRequired
                         Notifications = $notificationLevel
-                        Service = $SourceReturn
+                        Source = $SourceReturn
                         UpdateNow = $UpdateNowReturn
                     }
     $returnValue
@@ -443,8 +443,8 @@ function Set-TargetResource
     Write-Verbose "updateNow compliant: $updateCompliant"
     $notificationCompliant = (!$Notifications -or $Notifications -eq $Get.Notifications)
     Write-Verbose "notifications compliant: $notificationCompliant"
-    $SourceCompliant = (!$Source -or $Source -eq $Get.Service)
-    Write-Verbose "service compliant: $notificationCompliant"
+    $sourceCompliant = (!$Source -or $Source -eq $Get.Source)
+    Write-Verbose "source compliant: $sourceCompliant"
 
             If(!$updateCompliant -and $PSCmdlet.ShouldProcess("Install Updates"))
             {
@@ -549,9 +549,9 @@ function Test-TargetResource
     Write-Verbose "updateNow compliant: $updateCompliant"
     $notificationCompliant = (!$Notifications -or $Notifications -eq $Get.Notifications)
     Write-Verbose "notifications compliant: $notificationCompliant"
-    $SourceCompliant = (!$Source -or $Source -eq $Get.Service)
-    Write-Verbose "service compliant: $notificationCompliant"
-    If($updateCompliant -and $notificationCompliant -and $SourceCompliant)
+    $sourceCompliant = (!$Source -or $Source -eq $Get.Source)
+    Write-Verbose "source compliant: $sourceCompliant"
+    If($updateCompliant -and $notificationCompliant -and $sourceCompliant)
     {
         return $true
     }
